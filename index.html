@@ -1,130 +1,405 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-  <meta charset="UTF-8">
-  <title>수행평가2</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Workspace UI Wireframe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.4);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(156, 163, 175, 0.7);
+        }
+
+        /* Wireframe Mode Custom Styles */
+        .wireframe-mode {
+            font-family: 'Courier New', Courier, monospace !important;
+        }
+        .wireframe-mode * {
+            border-color: #000000 !important;
+            border-radius: 0px !important;
+            box-shadow: none !important;
+            background-image: none !important;
+        }
+        .wireframe-mode .wf-oval {
+            border-radius: 9999px !important;
+        }
+        .wireframe-mode .wf-circle {
+            border-radius: 50% !important;
+        }
+    </style>
 </head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 h-screen overflow-hidden flex flex-col font-sans transition-colors duration-200">
 
-<body>
-  <div id="wrap">
-    <h1>수행평가2 예시 페이지</h1>
-    <p class="intro">인공지능을 활용하여 웹사이트를 구현 합니다.<br></p>
+    <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2.5 flex items-center justify-between z-10 shrink-0">
+        <div class="flex items-center space-x-3">
+            <div class="p-1.5 bg-blue-600 text-white rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-layer-group text-lg"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-sm md:text-base leading-tight">Workspace Studio Prototype</h1>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Based on layout schematic (Panels 1 - 5)</p>
+            </div>
+        </div>
 
-    <div id="menu">
-      <a class="link" href="https://google.com">구글 외부 링크</a>
-      <a class="link" href="https://osani-h.goehs.kr/">오산정보고등학교</a>
-    </div>
+        <!-- Mode Toggle & Controls -->
+        <div class="flex items-center space-x-3">
+            <button id="toggleThemeBtn" class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                <i class="fa-solid fa-moon dark:hidden"></i>
+                <i class="fa-solid fa-sun hidden dark:inline"></i>
+            </button>
+            <div class="h-5 w-px bg-gray-300 dark:bg-gray-600"></div>
+            <button id="toggleWireframeBtn" class="flex items-center space-x-2 px-3 py-1.5 bg-gray-800 hover:bg-black text-white dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-white rounded-lg text-xs font-semibold transition shadow-sm">
+                <i class="fa-solid fa-pen-ruler"></i>
+                <span id="wireframeBtnText">Switch to Wireframe Mode</span>
+            </button>
+        </div>
+    </header>
 
-    <img class="photo" src="photo.svg" alt="코드온 동아리 활동 모습">
+    <main id="appContainer" class="flex-1 flex overflow-hidden bg-gray-50 dark:bg-gray-950">
 
-    <h2>유의 사항</h2>
-    <div class="box">
+        <!-- ================= PANEL 1: Far Left Sidebar ================= -->
+        <section id="panel1" class="w-16 md:w-52 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex flex-col shrink-0 select-none transition-all duration-200">
+            <div class="p-3 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider hidden md:inline">Panel 1 (Items)</span>
+                <span class="text-xs px-1.5 py-0.5 bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 rounded font-semibold">10</span>
+            </div>
+            <div class="flex-1 overflow-y-auto p-2 space-y-2" id="panel1List">
+                <!-- Dynamically populated or rendered items -->
+            </div>
+        </section>
 
-      <h3>
-        <ul>
-          <li>HTML, CSS, JS 누적 사용</li>
-          <li>바이브 코딩 스크립트 기록</li>
-        </ul>
-      </h3>
-    </div>
+        <!-- ================= PANEL 2: Middle-Left Sidebar ================= -->
+        <section id="panel2" class="w-48 md:w-64 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex flex-col shrink-0 transition-all duration-200">
+            <div class="p-3 border-b border-gray-100 dark:border-gray-800">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Panel 2 (Cards)</span>
+            </div>
+            <div class="flex-1 overflow-y-auto p-3 space-y-3">
+                <!-- Top thin card -->
+                <div class="p-2 bg-gray-50 dark:bg-gray-800/60 rounded-lg border border-gray-200 dark:border-gray-700/80 hover:border-blue-400 transition cursor-pointer">
+                    <div class="h-3 w-3/4 bg-gray-300 dark:bg-gray-600 rounded"></div>
+                </div>
 
-    <h2>HTML, CSS, JavaScript 수행평가 목록</h2>
-    <div id="cards">
-      <div class="card">
-        <h3>HTML</h3>
-        <ol>
-          <li>h1~h3</li>
-          <li>p,</li>
-          <li>br</li>
-          <li>div</li>
-          <li>span</li>
-          <li>ul</li>
-          <li>ol</li>
-          <li>li</li>
-          <li>a</li>
-          <li>img(alt 포함)</li>
-          <li>표(table, tr, th, td)</li>
-          <li>link</li>
-          <li>class</li>
-          <li>id</li>
-        </ol>
-      </div>
-      <div class="card">
-        <h3>CSS</h3>
-        <ol>
-          <li>background-color</li>
-          <li>border</li>
-          <li>width</li>
-          <li>height</li>
-          <li>margin</li>
-          <li>padding</li>
-          <li>display(inline-block, flex)</li>
-        </ol>
-      </div>
-      <div class="card">
-        <h3>javaScript</h3>
-        <ol>
-          <li>로그인</li>
-          <li>글자 색 바꾸기</li>
-          <li>클릭 수 세기</li>
-          <li></li>
-          <li>margin</li>
-        </ol>
-      </div>
-    </div>
-    <h2>JavaScript 예시</h2>
+                <!-- Medium card -->
+                <div class="p-3 bg-gray-50 dark:bg-gray-800/60 rounded-lg border border-gray-200 dark:border-gray-700/80 space-y-2 hover:border-blue-400 transition cursor-pointer">
+                    <div class="h-3 w-1/2 bg-gray-400 dark:bg-gray-500 rounded"></div>
+                    <div class="h-8 w-full bg-gray-200 dark:bg-gray-700/60 rounded flex items-center px-2 text-xs text-gray-500">Card Block A</div>
+                </div>
 
+                <!-- Tall card -->
+                <div class="p-3 bg-gray-50 dark:bg-gray-800/60 rounded-lg border border-gray-200 dark:border-gray-700/80 space-y-2 hover:border-blue-400 transition cursor-pointer">
+                    <div class="h-3 w-2/3 bg-gray-400 dark:bg-gray-500 rounded"></div>
+                    <div class="h-16 w-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/50 rounded flex items-center justify-center text-xs text-blue-600 dark:text-blue-400 font-medium">
+                        Tall Container
+                    </div>
+                </div>
 
-    <h3>1. 로그인</h3>
-    <form id="loginForm">
-      <input type="text" id="user_Id" placeholder="아이디" required>
-      <BR>
-      <input type="password" id="user_Pw" placeholder="비밀번호" required>
-      <BR>
-      <button type="submit">로그인</button>
-    </form>
-    <br>
-    
-    
-    <h3 id="textColor">2. 글자 색 바꾸기</h3>
+                <!-- Slim line item -->
+                <div class="h-6 bg-gray-200 dark:bg-gray-700/60 rounded border border-gray-300 dark:border-gray-600 flex items-center px-2">
+                    <div class="h-2 w-full bg-gray-400 dark:bg-gray-500 rounded"></div>
+                </div>
 
-    <h3 id="text_message">안녕하세요 만나서 반갑습니다. 클릭하시면 색이 바뀝니다.</h3>
+                <!-- Extra Large Card -->
+                <div class="p-3 bg-gray-50 dark:bg-gray-800/60 rounded-lg border border-gray-200 dark:border-gray-700/80 space-y-2 hover:border-blue-400 transition cursor-pointer">
+                    <div class="h-3 w-1/3 bg-gray-400 dark:bg-gray-500 rounded"></div>
+                    <div class="h-20 w-full bg-gray-200 dark:bg-gray-700/80 rounded flex items-center justify-center text-xs text-gray-500">
+                        Feature Block
+                    </div>
+                </div>
 
-    <br>
-    <h3>3. 카운터</h3>
+                <!-- Another Medium Block -->
+                <div class="p-3 bg-gray-50 dark:bg-gray-800/60 rounded-lg border border-gray-200 dark:border-gray-700/80 space-y-2">
+                    <div class="h-10 w-full bg-gray-200 dark:bg-gray-700/60 rounded"></div>
+                </div>
+            </div>
 
-    <button id="counter">counter</button>
-    <label id="count_number">0번 클릭</label>
+            <!-- Bottom 2 Side-by-Side Cards / Buttons -->
+            <div class="p-3 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 grid grid-cols-2 gap-2 shrink-0">
+                <button class="py-2 px-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-xs font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition text-center shadow-sm">
+                    Option A
+                </button>
+                <button class="py-2 px-3 bg-blue-600 text-white rounded-lg text-xs font-medium hover:bg-blue-700 transition text-center shadow-sm">
+                    Option B
+                </button>
+            </div>
+        </section>
 
-    <p id="number"></p>
+        <!-- ================= PANEL 3: Center Main Area ================= -->
+        <section id="panel3" class="flex-1 flex flex-col min-w-0 bg-gray-50 dark:bg-gray-950 overflow-hidden">
+            
+            <!-- Top Header Bar inside Section 3 -->
+            <div class="h-14 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 flex items-center justify-between shrink-0 shadow-sm">
+                <div class="flex items-center space-x-3 w-full">
+                    <div class="h-4 w-48 bg-gray-200 dark:bg-gray-700 rounded flex items-center px-2 text-xs text-gray-500">
+                        Workspace Header Title
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button class="px-2.5 py-1 text-xs border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-100 dark:hover:bg-gray-800">Share</button>
+                    <button class="px-2.5 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700">Export</button>
+                </div>
+            </div>
 
-    <h2>진행 일정</h2>
-    <table>
-      <tr>
-        <th>날짜</th>
-        <th>장소</th>
-        <th>활동 내용</th>
-      </tr>
-      <tr>
-        <td>10월 8일</td>
-        <td>컴퓨터실</td>
-        <td>HTML, CSS 바이브 코딩</td>
-      </tr>
-      <tr>
-        <td>10월 15일</td>
-        <td>컴퓨터실</td>
-        <td>HTML, CSS 코딩 수정</td>
-      </tr>
-      <tr>
-        <td>10월 16일</td>
-        <td>컴퓨터실</td>
-        <td>질의응답</td>
-      </tr>
-    </table>
-  </div>
+            <!-- SECTION 5: Main Canvas / Workspace / Interactive Chat -->
+            <div id="section5" class="flex-1 flex flex-col p-4 overflow-y-auto space-y-4">
+
+                <!-- Floating Shapes Graphic Area -->
+                <div class="relative h-44 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-900 flex items-center justify-center overflow-hidden shrink-0 shadow-inner group">
+                    <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+                    <span class="absolute top-2 left-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Canvas Preview</span>
+                    
+                    <!-- Floating Boxes (Matching design layout) -->
+                    <div class="relative w-48 h-28 flex items-center justify-center">
+                        <!-- Main Left Square -->
+                        <div class="absolute left-2 w-16 h-16 bg-blue-500/20 border-2 border-blue-500 rounded-lg flex items-center justify-center shadow-md transform -rotate-3 transition group-hover:scale-105">
+                            <i class="fa-solid fa-cube text-blue-500"></i>
+                        </div>
+                        <!-- Top Small Square -->
+                        <div class="absolute top-1 right-12 w-10 h-10 bg-indigo-500/20 border-2 border-indigo-500 rounded-md shadow-md transform rotate-6 transition group-hover:scale-110"></div>
+                        <!-- Bottom Wide Rectangle -->
+                        <div class="absolute bottom-2 right-4 w-20 h-9 bg-emerald-500/20 border-2 border-emerald-500 rounded-md shadow-md transition group-hover:scale-105 flex items-center justify-center">
+                            <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400">Object</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Divider / Content lines -->
+                <div class="space-y-2 py-1">
+                    <div class="h-2 w-full bg-gray-200 dark:bg-gray-800 rounded"></div>
+                    <div class="h-2 w-4/5 bg-gray-200 dark:bg-gray-800 rounded"></div>
+                    <div class="border-b border-gray-200 dark:border-gray-800 my-3"></div>
+                </div>
+
+                <!-- Dynamic Chat Feed Messages (Special character placeholders) -->
+                <div class="flex-1 space-y-3 min-h-[120px]" id="messageContainer">
+                    <!-- Message 1 -->
+                    <div class="flex items-start space-x-3 bg-white dark:bg-gray-900 p-3 rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-500 text-white flex items-center justify-center font-bold text-sm shrink-0 wf-circle">
+                            U1
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-semibold text-gray-500">System Operator</span>
+                                <span class="text-[10px] text-gray-400">10:42 AM</span>
+                            </div>
+                            <p class="text-base font-mono font-bold text-gray-800 dark:text-gray-100 mt-0.5 tracking-wide">
+                                %&amp;*@$#
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="relative py-1 flex items-center justify-center">
+                        <div class="border-t border-gray-300 dark:border-gray-700 w-full"></div>
+                        <span class="absolute bg-gray-50 dark:bg-gray-950 px-2 text-[10px] text-gray-400 uppercase">Log Divider</span>
+                    </div>
+
+                    <!-- Message 2 -->
+                    <div class="flex items-start space-x-3 bg-white dark:bg-gray-900 p-3 rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-500 to-rose-500 text-white flex items-center justify-center font-bold text-sm shrink-0 wf-circle">
+                            U2
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-semibold text-gray-500">Core Response</span>
+                                <span class="text-[10px] text-gray-400">10:43 AM</span>
+                            </div>
+                            <p class="text-base font-mono font-bold text-gray-800 dark:text-gray-100 mt-0.5 tracking-wide">
+                                *!@#%
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Box Area -->
+                <div class="pt-2 shrink-0">
+                    <form id="chatForm" class="relative flex items-center">
+                        <input type="text" id="chatInput" placeholder="type text here" class="w-full bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 border-2 border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 pr-12 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 shadow-sm transition text-sm">
+                        <button type="submit" class="absolute right-2 p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center justify-center">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= PANEL 4: Far Right Sidebar ================= -->
+        <section id="panel4" class="w-48 md:w-56 border-l border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex flex-col shrink-0 transition-all duration-200">
+            <div class="p-3 border-b border-gray-100 dark:border-gray-800">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Panel 4 (Pills / Tags)</span>
+            </div>
+            <div class="flex-1 overflow-y-auto p-3 space-y-2.5 flex flex-col items-center" id="panel4Pills">
+                <!-- Dynamically generated oval pill buttons -->
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // State Management
+        let isWireframeMode = false;
+        let selectedPanel1Index = 0;
+
+        // Element References
+        const appContainer = document.getElementById('appContainer');
+        const toggleWireframeBtn = document.getElementById('toggleWireframeBtn');
+        const wireframeBtnText = document.getElementById('wireframeBtnText');
+        const toggleThemeBtn = document.getElementById('toggleThemeBtn');
+        const panel1List = document.getElementById('panel1List');
+        const panel4Pills = document.getElementById('panel4Pills');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const messageContainer = document.getElementById('messageContainer');
+
+        function renderPanel1() {
+            panel1List.innerHTML = '';
+            for (let i = 1; i <= 10; i++) {
+                const isActive = i - 1 === selectedPanel1Index;
+                const item = document.createElement('div');
+                item.className = `flex items-center space-x-3 p-2 rounded-lg cursor-pointer transition border ${
+                    isActive 
+                    ? 'bg-blue-50 border-blue-300 dark:bg-blue-900/30 dark:border-blue-700' 
+                    : 'border-transparent hover:bg-gray-100 dark:hover:bg-gray-800'
+                }`;
+                item.onclick = () => {
+                    selectedPanel1Index = i - 1;
+                    renderPanel1();
+                };
+
+                item.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 border border-gray-400 dark:border-gray-500 flex items-center justify-center shrink-0 wf-circle">
+                        <i class="fa-solid fa-user text-gray-500 dark:text-gray-400 text-xs"></i>
+                    </div>
+                    <div class="h-4 flex-1 bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded hidden md:block"></div>
+                `;
+                panel1List.appendChild(item);
+            }
+        }
+
+        function renderPanel4() {
+            panel4Pills.innerHTML = '';
+            const pillLabels = [
+                "Primary Action", "Filter Option A", "Tag Category", "Status Pill", 
+                "Module Switch", "Data Stream", "Parameter B", "Config Item", 
+                "System State", "Secondary Tag", "Archive View"
+            ];
+
+            pillLabels.forEach((label, idx) => {
+                const button = document.createElement('button');
+                button.className = `wf-oval w-full py-2.5 px-4 rounded-full border text-xs font-medium transition shadow-sm flex items-center justify-center ${
+                    idx === 0 
+                    ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700' 
+                    : 'bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`;
+                button.textContent = label;
+                button.onclick = () => {
+                    alert(`Selected Tag: "${label}"`);
+                };
+                panel4Pills.appendChild(button);
+            });
+        }
+
+        toggleWireframeBtn.addEventListener('click', () => {
+            isWireframeMode = !isWireframeMode;
+            if (isWireframeMode) {
+                appContainer.classList.add('wireframe-mode');
+                wireframeBtnText.textContent = "Switch to Polished UI View";
+                toggleWireframeBtn.classList.remove('bg-gray-800', 'dark:bg-gray-200');
+                toggleWireframeBtn.classList.add('bg-blue-600', 'text-white');
+            } else {
+                appContainer.classList.remove('wireframe-mode');
+                wireframeBtnText.textContent = "Switch to Wireframe Mode";
+                toggleWireframeBtn.classList.add('bg-gray-800', 'dark:bg-gray-200');
+                toggleWireframeBtn.classList.remove('bg-blue-600', 'text-white');
+            }
+        });
+
+        toggleThemeBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            const msgCard = document.createElement('div');
+            msgCard.className = "flex items-start space-x-3 bg-white dark:bg-gray-900 p-3 rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm transition transform scale-98 animate-fade-in";
+            
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            msgCard.innerHTML = `
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-500 text-white flex items-center justify-center font-bold text-sm shrink-0 wf-circle">
+                    ME
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-gray-500">You</span>
+                        <span class="text-[10px] text-gray-400">${time}</span>
+                    </div>
+                    <p class="text-sm text-gray-800 dark:text-gray-100 mt-0.5 break-words">
+                        ${escapeHtml(text)}
+                    </p>
+                </div>
+            `;
+
+            messageContainer.appendChild(msgCard);
+            chatInput.value = '';
+            
+            // Scroll to bottom of section 5
+            const section5 = document.getElementById('section5');
+            section5.scrollTop = section5.scrollHeight;
+        });
+
+        // Helper function to escape HTML
+        function escapeHtml(string) {
+            return String(string).replace(/[&<>"']/g, function (s) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[s];
+            });
+        }
+
+        // Initialize Render
+        renderPanel1();
+        renderPanel4();
+    </script>
 </body>
+</html>
 
 </html>
